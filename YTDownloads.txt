@@ -1,0 +1,163 @@
+
+
+
+10:23 PM 31-Oct-26
+
+name the application as YTDownloads
+
+I want to build an windows based Desktop Python application that can download Youtube Videos, youtube music, seperate only the audio from youtube video and gives me three options like low, high, and HD quality videos while downloading.  The file should be saved as MP4 for video and 
+
+Audio into MP3 files. 
+
+If youtube link got more than one video in the same URL, app should have check boxes for every video.  User should be able to check the box and download only that music / video from the list. Once, downloaded, it should have location as a folder icon for user to open the file location. 
+=-=-==-==--=-
+
+started
+
+8:37 PM 02-Nov-26
+
+main.py — The core application entry point. It initializes the CustomTkinter window, handles the UI layout (Dark/Light mode toggles, Universal URL bar, Master format selection, and the scrollable queue list), and coordinates user actions.
+
+downloader.py — The background worker engine. It interfaces with yt-dlp to fetch metadata, handle 50-item playlist pagination, process video/audio streams, and trigger FFmpeg for your custom quality tiers (128k, 192k, 320k MP3, FLAC, and uncompressed WAV).
+
+requirements.txt — Tracks your python dependencies (customtkinter, pillow, yt-dlp
+
+=-==-
+powershell
+"customtkinter`npillow`nyt-dlp" | Out-File -Encoding utf8 requirements.txt
+
+powershell
+pip install -r requirements.txt
+
+
+It downloaded two separate files when I tried to download the video from youtube. one file is .mp4 for video with no audio and another file webm file for audio.  It should merge these two and download as one format file.
+
+Update needed
+1. download icon at top left to be changed to modern download icon
+2. version and wordings to be changed to YTDDownloads -v1.0
+3. Progress bar : after pasting url, followed by clicking on fetch, it should show progress bar while fetching the information. The progress bar should dissappear once the information is fetched.
+4. we need to have download button next to every row to click on download and no change in the existing Download Selected Button at top.
+5. Thumbnail on every item should display, when user click on that thumbnail, it should play directly from internet in the same applicaiton as user verify to check they are downloading the right one and then click on download arrow respective to that particular item.
+6. If user wants to download multiple format for same item, after downloading one format, example downloaded only audio from youtube url as it has video and audio, and trying to download video with audio, it should allow user to choose different format from dropdown for that item and download again in the selected format rather than marking as completed with tick mark no option to select from dropdown. Marking as completed with tick mark is fine if user does not select different format from dropdown.  Whenever the different format is selected from the dropdown, the completed with tick mark should be replaced with a tiny download arrow next to dropdown for user to understand and download again.
+
+7. Global 'Click all' button should be added to clear the search text box and Queue list.
+
+
+=-=--=-
+
+Still same issue as it downloads tow separate files 
+
+Update 1:
+When user click on "Clear All" button, it should also bring the progress bar while it is clearing the queue.  Once queue is cleared the progress bar should dissappear. 
+
+Update 2: 
+The green download squre button with download arrow should be replaced with red round with white download arrow
+The icon features a bold, solid red downward arrow entering a U-shaped download tray, on a plain white background.
+Element	Color	HEX
+Arrow	Bright Red	#FF0000
+Download tray	Bright Red	#FF0000
+Background	Pure White	#FFFFFF
+Edge / outline	None	—
+
+Design characteristics:
+- Solid red filled arrow and tray.
+- Smooth, rounded corners.
+- Flat, minimalist design.
+- No gradients, shadows, circles, or decorative elements.
+
+=-==-=--
+
+
+It downloads video with audio in one file. Good job.
+
+Add the link https://www.paypal.com/paypalme/walkstreets as a Pill button "Support YTDownloads"
+
+Updates:
+1. duplicated information about the application with two different download icon at top left.  Keep only one line at top left "YTDownloads -v1.0'  with the download icon as described below.
+
+Download icon:
+Make it uniform "existing download arrow with bucket and round white background rather rectangle or squre white background.
+
+2. Thumbnail is not displaying the image for every item
+
+3. dropdown is missing and different format looks not good.  Retain the format listed as drop down.
+
+4. download button and folder icon should not be in same white square.  Folder icon should separated from download icon for each item
+
+=-=-==-=--=
+Application hangs.  
+
+t_classes\dropdown_menu.py", line 26, in __init__
+    tkinter.Menu.__init__(self, *args, **kwargs)
+  File "C:\Users\admi\AppData\Local\Programs\Python\Python310\lib\tkinter\__init__.py", line 3316, in __init__
+    Widget.__init__(self, master, 'menu', cnf, kw)
+  File "C:\Users\admi\AppData\Local\Programs\Python\Python310\lib\tkinter\__init__.py", line 2601, in __init__
+    self.tk.call(
+_tkinter.TclError: No more menus can be allocated.
+
+
+Recommendation : 
+
+Let us load only first 50 items in one page and we should have next / previous arrow.  When user click on next, the next page should load with download button.  This wil help us to use only 50 download button at a time.
+
+=-==-=-
+
+Updates
+
+Update 1:
+
+Mak a task bar kind at bottom with words "Report an Issue" with hyperlink activated. When user click on this link, it pops up with a window with tittle "Describe the issue" and that window should collect 
+
+1. User Name :
+2. Email Address :
+3. A text box for user to describe the issue.  Submit and cancel buttons.
+
+Submit button:
+When user click on submit button, it should open a confirmation window "Thank you for reporting the issue" with download button. We have generated a text file. Download the file.
+
+The text file should have :
+Ticket number: (INC+Timestamp)
+User name : 
+Email address : 
+Description of issue that user typed.
+
+Instructions.  "YTDownloads will not send any information to developer.  Kindly attach this file and send an email to waalkstreets@gmail.com
+
+Cancel Button close the pop up window without downloading the text file.
+=-==-=--
+
+Update 2:
+
+"Support YTDownloads" pill button should be in deep red background with clear white text and placed at top center of the application rather keeping it at top right with other buttons.
+
+
+=-=-=-=--=
+Report an issue workflow
+
+Workflow
+
+User clicks the link >> it opens up pop up to collect detail >> user clicks on submit >> Confirmation pop up with download button and that reads "Thank you message with INC+Timestame (Ticket number) and instructions to download the .txt file and send mail to waalkstreets@gmail.com
+
+This will make sure user understand the mechanism on how to report issue with YTDownloads app
+
+=-=-=-=-=
+
+Application works.  
+
+Requirement 1.
+Let us build YTDownloads.exe for Microsoft Store submission. Note : Microsoft store wants unsigned application
+
+Request 2:
+We will submit the .exe file to Microsoft Store.
+
+Require 3:
+We will install the same .exe file on my laptop and I will test it for few days.
+
+
+
+/VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+
+
+
+
+
