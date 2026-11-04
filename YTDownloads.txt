@@ -1,6 +1,11 @@
 
 
 
+pyinstaller --noconsole --onefile --name YTDownloads --icon=app_icon.ico --add-data "logo.png;." --add-data "app_icon.ico;." main.py
+
+
+
+
 10:23 PM 31-Oct-26
 
 name the application as YTDownloads
@@ -158,6 +163,185 @@ We will install the same .exe file on my laptop and I will test it for few days.
 /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 
 
+https://github.com/chockalingamp-oss/ytdownloads-app/blob/main/InstallerOutput/YTDownloads_Setup.exe
+
+Update required
+
+1. We need to have custom Icon for the applicaiton rather than floppy disk
+2. We need to have custom High quality Logo for application
+3. We need to have high quality download icons for each items
+
+Logo as attached
 
 
 
+
+
+--
+Application identity - 9:50 AM 03-Nov-26
+a8762379-e491-4152-bae2-c06f42dfe2ff
+=-=-=--
+
+install pillow
+from Powershell
+pip install Pillow
+
+Powershell
+convert .png file to .ico file
+python -c "from PIL import Image; img = Image.open('logo.png'); img.save('app_icon.ico', format='ICO', sizes=[(256, 256), (48, 48), (32, 32), (16, 16)])"
+
+
+Need to download
+hindi song
+
+https://music.youtube.com/watch?v=upsoCjeSme4&list=OLAK5uy_nycvYhMq2poudAWYrjgY3-spOeXaxWhz0
+
+
+problematic url
+https://music.youtube.com/watch?v=XuTCUlYNW_Q&list=RDATli
+
+
+did not bring any items in list.
+https://music.youtube.com/watch?v=t69dQUupCm4&list=OLAK5uy_lW9ct12qWzKdxfegrdWIWf9m66M3aC_DM
+
+
+no thumbnail and some are unknown
+https://music.youtube.com/search?q=old+hindi+super+hit
+
+=-=-=-=-=--
+
+tried with new YTDownload.exe with updated features
+
+https://www.youtube.com/watch?v=wRAWDCZIqzU&list=RDwRAWDCZIqzU&start_radio=1
+
+failed to fetch the info in 30 seconds.  Hence, updated new features settings.
+
+=-=-===-=-=-=-=
+
+
+"Fetch info" button should change to "Cancel search" with Red button when it takes long time to fetch information.  
+
+When user click on "Cancel search", it should stop searching and "Cancel search" Red button should change to "Clear search" amber button.  When user clicks on "Clear search" button, it should clear the URL in seach box and the "Clear search" should return to its original "Fetch info" with original color.
+
+fallback:
+If there is not in his seat and no action from user clicking on "Cancel search" then it should search for 30 seconds and throw a pop up "URL does not allow downloads. Please try different URL" with OK "button". 
+
+When user clicks on "OK" the URL should remain in the search box.  and the "Cancel search" in red button should change to "Clear search" with amber color.  When user click on "Clear search", it should clear the search box and "Clear Search" button should return to its original "Fetch info" with its original color.
+
+=-==-=-
+
+
+
+7:31 PM 03-Nov-26
+
+Requirements 1:
+Downloaded items are not gettinto to location that we set using "Set Folder" as it directly goes to default download folders.
+
+Requirement 2:
+We need to have "Delete Selected" button if user select the check boxes and they can use this button to clear the selected items from the search results.
+
+Requirement 3: We need to have hight quality download buttons for each items.
+
+Requirement 4: concurrent download should be for two items always as it is going one by one now.
+
+
+
+=-=--=-=--
+
+=-=-==-=-=-
+
+to build the .exe file
+
+cd C:\YTDownloads
+pyinstaller --noconsole --onefile --name="YTDownloads" --icon="C:\YTDownloads\app_icon.ico" main.py
+
+=-=-=--==-
+
+Build YTDownloads.exe in powershell
+pyinstaller --noconsole --onefile --name="YTDownloads" --icon=app_icon.ico --add-data "app_icon.ico;." --add-data "logo.png;." main.py
+
+=-==-=--
+8:20 AM 04-Nov-26
+
+Settings : search time to be changed to 2 minutes rather than 30 seconds.
+
+Requirement:
+
+Settings icon on the main window
+
+"Change search time (Seconds):"  a sliding bar and at the end of sliding bar, an input box where user can input a number and at extreme end "Default" button where it will default to 60 seconds.
+
+When user makes any changes to this, that should be considered for the search time. default
+
+We might add more settings features in future.  Hence design the Setting window with maximum space.
+
+=-=-=-=
+
+I changed the gray to light from dropdown inside settings, it immediately changed the theme before I save the settings and the application frozen now with light theme.
+
+==---=-
+
+54 min video for testing the progress bar on downloading status.
+
+https://www.youtube.com/watch?v=c-l99LN0mGg&list=RDc-l99LN0mGg&start_radio=1
+
+=-==-=--
+
+when it is downloading the red download button should change to pause button.  When user clicks on Paus, it should turn to Resume. When user clicks on Resume, it should continue downloading. Status message "Read" can be replaced with "Cancel" if user wants to cancel the down as it might be large file, user can cancel the download for that item and move on to another item.
+
+
+=-=-==--=
+
+When no item is selected and use clicked on "Delete Selected" >> it should pop up saying "Select item(s) to be deleted" rather than selecting all items in the list.
+
+=-==-=-
+
+
+When I click on download button for that particular item, it does nothing. When I check the box and click on "Download Selected", it downloaded and showing two buttons as in image.  When I change the dropdown, Download button is gone and only folder option is there.
+
+
+This is for individual item download
+Click on dropdown and changed the format >> Ready and Red download button stays stable ==== good.
+Click on Red Download button >> nothing happened
+Click on dropdown and changed to different format >> clicked on download >>> nothing happened
+-=-==-
+using "Downloadd Selected" 
+checked the check box and click on "Downloadd Selected"  and it downloads
+it changed to paus, play and all are good
+Download completed and good result.
+
+Changed the format from dropdown >> clicked on "Downloadd Selected" >> started downloading. However, folder icon over paus/play button.
+
+=-=-=-=--
+
+Clicked on Red downloadd button == nothing happened
+Changed the format in dropdown and clicked on Red download button = nothing happened
+
+Clicked on "Download Selected" = downloaded successfully and folder icon is in place.
+Clicked on dropdown and changed the format == still folder icon present rather Red download button
+Paus/play button works fine
+
+=-=-
+
+Single Red download button = started downloading. and Play/paus works as expected.
+
+Post download, when we change the format from dropdown, it still remains in the Ready + folder instead of Single Red download button.
+
+=-=-=-=
+
+Single red download button works for first time.  When we change the format in dropdown and the single red download button is not coming back to download for second time.
+
+
+=-=-=-=-
+
+4:21 PM 04-Nov-26
+testing
+https://www.youtube.com/watch?v=wbV2_JSRK8Y&list=RDwbV2_JSRK8Y&start_radio=1
+
+
+testing  4:42 PM 04-Nov-26
+https://www.youtube.com/watch?v=SXk-KqSoxaA&list=RDSXk-KqSoxaA&start_radio=1
+
+
+
+ 
